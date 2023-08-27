@@ -1,3 +1,5 @@
 window.onload = () => {
-    console.log('prueba');
+    console.log('prueba')
+
+    
 }
