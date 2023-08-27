@@ -5,7 +5,6 @@
 }
 
 body{
-    border: 1px solid blue;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -77,4 +76,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.div-number:hover{
+    box-shadow: 1px 1px 5px rgb(255, 255, 255);
+    cursor: pointer;
 }
