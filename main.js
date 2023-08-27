@@ -64,7 +64,40 @@ window.onload = () => {
                 }
                 operationDisplay.textContent = currentExpression;
             }
+
+            if (firstNumber !== '' && secondNumber !== '') {
+                const num1 = parseFloat(firstNumber);
+                const num2 = parseFloat(secondNumber);
+
+                let result;
+
+                switch (operator) {
+                    case '+':
+                        result = add(num1, num2)
+                        firstNumber = result;
+                        operationDisplay.textContent = result;
+                        numberDisplay.textContent = result;
+                        console.log(result);
+                        break;
+                    case '-':
+                        result = add(num1, num2)
+                        console.log(result);
+                        break;
+                    case 'x':
+                        result = add(num1, num2)
+                        console.log(result);
+                        break;
+                    case '/':
+                        result = add(num1, num2)
+                        console.log(result);
+                        break;
+                    default:
+                        console.log('Valor invalido');
+                        break;
+                }
+            }
         })
+
     })
 
     clearBtn.addEventListener('click', () => {
@@ -77,8 +110,7 @@ window.onload = () => {
     })
 
     deleteBtn.addEventListener('click', () => {
-        if(operator === ''){
-
+        if (operator === '') {
             let opD = operationDisplay.textContent.split('')
             opD.pop();
             let newOpD = opD.join('');
@@ -94,7 +126,7 @@ window.onload = () => {
             opD.pop();
             let newOpD = opD.join('');
             operationDisplay.textContent = newOpD;
-            
+
             let arr = secondNumber.split('');
             arr.pop()
             let newNum = arr.join('');
@@ -107,7 +139,6 @@ window.onload = () => {
     const substract = (a, b) => a - b;
     const multiply = (a, b) => a * b;
     const divide = (a, b) => a / b;
-
 
 
 }
