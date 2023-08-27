@@ -77,6 +77,7 @@ window.onload = () => {
                         firstNumber = result;
                         operationDisplay.textContent = result;
                         numberDisplay.textContent = result;
+                        secondNumber = '';
                         console.log(result);
                         break;
                     case '-':
