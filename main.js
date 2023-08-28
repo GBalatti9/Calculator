@@ -33,10 +33,14 @@ window.onload = () => {
     let operator = '';
     let secondNumber = '';
     let currentExpression = '';
+    let equal = false;
 
     calculatorBtns.forEach(btn => {
         btn.addEventListener('click', e => {
             let btnValue = e.target.textContent;
+            if(btnValue === '='){
+                equal = true;
+            }
             if (/^(\d+(\.\d*)?)$/.test(btnValue)) {
                 if (operator === '') {
                     if (firstNumber === 0) {
@@ -57,46 +61,49 @@ window.onload = () => {
                     operationDisplay.textContent = currentExpression;
                     numberDisplay.textContent = secondNumber;
                 }
-            } else {
+            } else if (['+', '-', 'x', '/'].includes(btnValue)) {
                 operator = btnValue;
                 if (currentExpression !== '') {
                     currentExpression = `${firstNumber} ${operator}`;
                 }
                 operationDisplay.textContent = currentExpression;
-            }
-
-            if (firstNumber !== '' && secondNumber !== '') {
-                const num1 = parseFloat(firstNumber);
-                const num2 = parseFloat(secondNumber);
-
-                let result;
-
-                switch (operator) {
-                    case '+':
-                        result = add(num1, num2)
-                        firstNumber = result;
-                        operationDisplay.textContent = result;
-                        numberDisplay.textContent = result;
-                        secondNumber = '';
-                        console.log(result);
-                        break;
-                    case '-':
-                        result = add(num1, num2)
-                        console.log(result);
-                        break;
-                    case 'x':
-                        result = add(num1, num2)
-                        console.log(result);
-                        break;
-                    case '/':
-                        result = add(num1, num2)
-                        console.log(result);
-                        break;
-                    default:
-                        console.log('Valor invalido');
-                        break;
+            } else if (btnValue === '='){
+                equal = true;
+                if (operator && equal && secondNumber !== '') {
+                    const num1 = parseFloat(firstNumber);
+                    const num2 = parseFloat(secondNumber);
+    
+                    let result;
+    
+                    switch (operator) {
+                        case '+':
+                            result = add(num1, num2)
+                            console.log(result);
+                            break;
+                        case '-':
+                            result = substract(num1, num2)
+                            console.log(result);
+                            break;
+                        case 'x':
+                            result = multiply(num1, num2)
+                            console.log(result);
+                            break;
+                        case '/':
+                            result = divide(num1, num2)
+                            console.log(result);
+                            break;
+                        default:
+                            console.log('Valor invalido');
+                            break;
+                    }
+                    firstNumber = result;
+                    operationDisplay.textContent = result;
+                    numberDisplay.textContent = result;
+                    secondNumber = '';
+                    operator = '';
                 }
             }
+
         })
 
     })
@@ -106,6 +113,7 @@ window.onload = () => {
         secondNumber = '';
         operator = '';
         currentExpression = '';
+        result = '';
         numberDisplay.textContent = 0
         operationDisplay.textContent = ''
     })
